@@ -1,3 +1,2 @@
-##Simple Shell
-**ALX LOW LEVEL PROGRAMMING/ C PROGRAMMING LANGUAGE**
-==Chris Adongo and Gloria Mwamidi group project==.
+Simple Shell - ALX Low Level Programming /  C Programming Language
+**Chris Adongo and Gloria Mwamidi group project**
