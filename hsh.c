@@ -112,8 +112,8 @@ void loop(int argc, char **argv)
 
 /**
  * handle_input - handles input from user.
- * @argc: the number of arguments passed to the shell.
- * @argv: array of arguments passed to the shell.
+ * @argc: the number of arguments passed to the hsh.
+ * @argv: array of arguments passed to the hsh.
  *
  * Return: int.
  */
@@ -125,10 +125,10 @@ int handle_input(int argc, char **argv)
 
 /**
  * main - entry point of the program.
- * @argc: the number of arguments passed to the shell.
- * @argv: array of arguments passed to the shell.
+ * @argc: the number of arguments passed to the hsh.
+ * @argv: array of arguments passed to the hsh.
  *
- * Return: int.
+ * Return: 0 on success.
  */
 int main(__attribute__((unused)) int argc, char **argv)
 {
