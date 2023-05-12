@@ -9,15 +9,13 @@
  */
 void handle_empty_input_error(char *prog_name, int c)
 {
-	int i = 0, prog_name_len = 0;
-
-	while (prog_name[prog_name_len] != '\0')
-		prog_name_len++;
-
 	char *error_msg = "Error: No command was entered\n";
 	char *line_num_msg = " at line ";
 	char line_num[10];
-	int line_num_len = 0, c_copy = c;
+	int i = 0, prog_name_len = 0, line_num_len = 0, c_copy = c;
+
+	while (prog_name[prog_name_len] != '\0')
+		prog_name_len++;
 
 	while (c_copy > 0)
 	{
