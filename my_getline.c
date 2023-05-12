@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define READ_SIZE 1024
+#include "main.h"
 
 /**
  * _realloc - reallocates memory block using malloc and free
