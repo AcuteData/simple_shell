@@ -51,4 +51,6 @@ void handle_comd(char **comd);
 /* Print Environment Variable */
 void print_environ(char **env);
 
+void _prompt(void);
+
 #endif
