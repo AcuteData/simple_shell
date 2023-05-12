@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <signal.h>
+#include <sys/wait.h>
 
 #define BUFFER_SIZE 1024
 
