@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 
 /**
  * parse_comd - Parses a command string and stores args in an array.
