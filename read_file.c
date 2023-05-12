@@ -20,10 +20,12 @@ size_t my_strlen(const char *str)
 /**
  * read_file - Reads and writes the contents of a file to standard output.
  * @file_name: Name of the file to read.
+ * @buffer: Pointer to a buffer where the contents of the file will be stored.
+ * @buf: Size of the buffer.
  *
- * Return: Void.
+ * Return: Number of bytes read.
  */
-void read_file(const char *file_name, int output_fd)
+ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 {
 	int fd = open(file_name, O_RDONLY);
 
@@ -32,7 +34,7 @@ void read_file(const char *file_name, int output_fd)
 		char *error_msg = "open: No such file or directory\n";
 
 		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
-		return;
+		return (-1);
 	}
 	struct stat st;
 
@@ -42,26 +44,25 @@ void read_file(const char *file_name, int output_fd)
 
 		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		close(fd);
-		return;
+		return (-1);
 	}
-	char buffer[BUFFER_SIZE];
+	ssize_t t_b_read = 0;
 	ssize_t bytes_read;
 
-	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
+	while ((bytes_read = read(fd, *buffer + t_b_read, buf - t_b_read)) > 0)
 	{
-		if (write(output_fd, buffer, bytes_read) < 0)
+		t_b_read += bytes_read;
+		if (t_b_read >= buf)
 		{
-			char *error_msg = "write: Failed to write to output file descriptor\n";
-
-			write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 			break;
 		}
-	}
-	if (bytes_read < 0)
-	{
-		char *error_msg = "read: Failed to read file\n";
+		if (bytes_read < 0)
+		{
+			char *error_msg = "write: Failed to write to read file\n";
 
-		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
+			write(STDERR_FILENO, error_msg, my_strlen(error_msg));
+		}
 	}
 	close(fd);
+	return (t_b_read);
 }
