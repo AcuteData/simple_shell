@@ -23,7 +23,7 @@ size_t my_strlen(const char *str)
  *
  * Return: Void.
  */
-void read_file(const char *file_name)
+void read_file(const char *file_name, int output_fd)
 {
 	int fd = open(file_name, O_RDONLY);
 
@@ -49,9 +49,9 @@ void read_file(const char *file_name)
 
 	while ((bytes_read = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		if (write(STDOUT_FILENO, buffer, bytes_read) < 0)
+		if (write(output_fd, buffer, bytes_read) < 0)
 		{
-			char *error_msg = "write: Failed to write to standard output\n";
+			char *error_msg = "write: Failed to write to output file descriptor\n";
 
 			write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 			break;
