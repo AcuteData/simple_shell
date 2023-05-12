@@ -59,7 +59,9 @@ void loop(int argc, char **argv)
 	int c = 0, st = 0;
 
 	if (argv[1] != NULL)
-		read_file(argv[1], argv);
+		char *buffer = argv[2];
+
+	read_file(argv[1], &buffer, my_strlen(argv[2]));
 
 	signal(SIGINT, sigint_sig);
 
