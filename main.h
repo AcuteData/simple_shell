@@ -33,7 +33,7 @@ void read_file(const char *file_name);
 
 /* Handle Builtin */
 int my_strcmp(const char *s1, const char *s2);
-int handle_builtin(char **args);
+int handle_builtin(char **args, char **environ);
 
 /* Parse comd */
 int parse_comd(char *comd, char **args);
