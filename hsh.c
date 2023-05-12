@@ -94,9 +94,26 @@ void loop(int argc, char **argv)
 
 		if (st == -1)
 			break;
+
+		if (argv[1] != NULL && argv[2] != NULL)
+		{
+			char *buffer = malloc(sizeof(char) * (my_strlen(argv[2]) + 1));
+
+			if (buffer == NULL)
+			{
+				perror("malloc");
+				exit(EXIT_FAILURE);
+			}
+			ssize_t bytes_read = read_file(argv[1], &buffer, my_strlen(argv[2]) + 1);
+
+			if (bytes_read >= 0)
+			{
+				write(STDOUT_FILENO, buffer, bytes_read);
+			}
+			free(buffer);
+		}
 	}
 }
-
 /**
  * handle_input - handles input from user.
  * @argc: the number of arguments passed to the hsh.
