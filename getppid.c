@@ -14,5 +14,5 @@ int main(void)
 
 	printf(" The parent process ID%u\n", ppid);
 	printf("The current process ID%u\n",pid);
-	return (0);`
+	return (0);
 }

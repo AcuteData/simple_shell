@@ -12,18 +12,14 @@
  */
 char *my_strcpy(char *dest, const char *src)
 {
-	char *dest_ptr = dest;
-	const char *src_ptr = src;
+	int i = 0;
 
-	while (*src_ptr)
+	while (src[i] != '\0')
 	{
-		*dest_ptr = *src_ptr;
-		dest_ptr++;
-		src_ptr++;
+		dest[i] = src[i];
+		i++;
 	}
-
-	*dest_ptr = '\0';
-
+	dest[i] = '\0';
 	return (dest);
 }
 
@@ -37,18 +33,26 @@ char *my_strcpy(char *dest, const char *src)
  */
 void history(char *input, char **hist_buf, int *hist_count)
 {
+	char *input_copy;
+	int i;
+
 	if (input != NULL && input[0] != '\0')
 	{
-		char *input_copy = malloc(my_strlen(input) + 1);
+		input_copy = malloc(my_strlen(input) + 1);
 
-		if (input_copy != NULL)
+		if (input_copy == NULL)
+		{
+			free(input_copy);
+			perror("Malloc Unsuccessful");
+		}
+		else
 		{
 			my_strcpy(input_copy, input);
 
 			if (*hist_count == MAX_HISTORY_SIZE)
 			{
 				free(hist_buf[0]);
-				for (int i = 1; i < MAX_HISTORY_SIZE; i++)
+				for (i = 1; i < MAX_HISTORY_SIZE; i++)
 				{
 					hist_buf[i - 1] = hist_buf[i];
 				}
