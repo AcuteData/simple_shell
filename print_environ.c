@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
+#include "main.h"
 
 /**
  * print_environ - prints environment variables.
