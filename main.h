@@ -30,7 +30,7 @@ void sigint_sig(int sig);
 
 /* Read File */
 size_t my_strlen(const char *str);
-void read_file(const char *file_name);
+void read_file(const char *file_name, int output_fd);
 
 /* Handle Builtin */
 int my_strcmp(const char *s1, const char *s2);
