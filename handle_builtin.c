@@ -62,7 +62,7 @@ char *my_getenv(const char *name, char **environ)
  *
  * Return: 1 if command is a built-in command, 0 if not
  */
-int handle_builtin(char **args)
+int handle_builtin(char **args, char **environ)
 {
 	if (args[0] == NULL)
 	{
@@ -71,7 +71,7 @@ int handle_builtin(char **args)
 
 	if (args[1] == NULL && my_strcmp(args[0], "cd") == 0)
 	{
-		chdir(my_getenv("HOME"));
+		chdir(my_getenv("HOME", environ));
 		return (1);
 	}
 
