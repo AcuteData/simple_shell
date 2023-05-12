@@ -44,6 +44,8 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size);
 char *my_getline(const int fd);
 
 /* Handle Comd */
+void handle_pwd(void);
+void handle_cd(char **comd);
 void handle_comd(char **comd);
 
 /* Print Environment Variable */

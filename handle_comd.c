@@ -1,13 +1,13 @@
 #include "main.h"
 
 /**
- * exec_pwd - Executes the 'pwd' command.
+ * handle_pwd - Executes the 'pwd' command.
  *
  * Description: prints current working directory to stdout.
  *
  * Return: Nothing.
  */
-void exec_pwd(void)
+void handle_pwd(void)
 {
 	char *cwd = getcwd(NULL, 0);
 
@@ -23,7 +23,7 @@ void exec_pwd(void)
 	}
 }
 /**
- * exec_cd - Executes the 'cd' command.
+ * handle_cd - Executes the 'cd' command.
  *
  * @comd: An array of strings containing the command and its arguments.
  *
@@ -31,7 +31,7 @@ void exec_pwd(void)
  *
  * Return: Nothing.
  */
-void exec_cd(char **comd)
+void handle_cd(char **comd)
 {
 	if (comd[1] == NULL)
 	{
@@ -44,7 +44,7 @@ void exec_cd(char **comd)
 }
 
 /**
- * exec_comd - Executes a command entered by the user.
+ * handle_comd - Executes a command entered by the user.
  *
  * @comd: An array of strings containing the command and its arguments.
  *
@@ -54,17 +54,17 @@ void exec_cd(char **comd)
  *
  * Return: Nothing.
  */
-void exec_comd(char **comd)
+void handle_comd(char **comd)
 {
 	if (comd[0] == NULL)
 		return;
 	else if (my_strcmp(comd[0], "cd") == 0)
 	{
-		exec_cd(comd);
+		handle_cd(comd);
 	}
 	else if (my_strcmp(comd[0], "pwd") == 0)
 	{
-		exec_pwd();
+		handle_pwd();
 	}
 	else if (my_strcmp(comd[0], "exit") == 0)
 	{
