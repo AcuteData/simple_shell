@@ -8,7 +8,7 @@
  */
 char **parse_comd(char *comd)
 {
-	static char *args[BUFSIZE];
+	char *args[BUFSIZ];
 	int argc = 0;
 
 	while (*comd != '\0')
