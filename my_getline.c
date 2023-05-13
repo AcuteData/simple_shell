@@ -11,6 +11,7 @@
 void *_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	char *new_ptr;
+	size_t i;
 
 	if (new_size == old_size)
 		return (ptr);
@@ -47,10 +48,10 @@ void *_realloc(void *ptr, size_t old_size, size_t new_size)
  */
 char *my_getline(const int fd)
 {
-	static char buffer[READ_SIZE];
 	static char *line;
 	static size_t line_len;
 	static size_t line_cap;
+	static char buffer[READ_SIZE];
 	ssize_t bytes_read;
 	size_t i;
 

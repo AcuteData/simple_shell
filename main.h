@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 
 #define BUFFER_SIZE 1024
+#define READ_SIZE 1024
 
 /* HSH */
 int main(__attribute__((unused)) int argc, char **argv, char **env);
