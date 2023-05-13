@@ -51,6 +51,9 @@ int h_comd(char **comd, char *input, unsigned int c, int argc, char **argv);
 /* Print Environment Variable */
 void print_environ(char **env);
 
+/* FREE MEM */
+void free_mem(int argc, char **argv);
+
 void _prompt(void);
 
 #endif
