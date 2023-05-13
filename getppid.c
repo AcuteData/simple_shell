@@ -4,7 +4,7 @@
  *
  * Return: 0 on success
  */
-int main(__attribute__((unused)) int argc, char **argv)
+int my_pid(void)
 {
 	pid_t ppid;
 	pid_t pid;

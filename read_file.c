@@ -28,7 +28,7 @@ size_t my_strlen(const char *str)
 ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 {
 	struct stat st;
-	ssize_t t_b_read = 0;
+	size_t t_b_read = 0;
 	ssize_t bytes_read;
 
 	int fd = open(file_name, O_RDONLY);

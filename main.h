@@ -15,7 +15,8 @@
 
 #define BUFFER_SIZE 1024
 #define READ_SIZE 1024
-
+/*PID*/
+int my_pid(void);
 /* HSH */
 int main(__attribute__((unused)) int argc, char **argv, char **env);
 int handle_input(int argc, char **argv);
