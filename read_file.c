@@ -2,9 +2,9 @@
 
 /**
  * my_strlen - Computes the length of a null-terminated string.
- * @str: Pointer to the string
+ * @str: Pointer to the string.
  *
- * Return: The length of the string
+ * Return: The length of the string.
  */
 size_t my_strlen(const char *str)
 {
@@ -28,7 +28,7 @@ size_t my_strlen(const char *str)
 ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 {
 	struct stat st;
-	ssize_t t_b_read = 0;
+	size_t t_b_read = 0;
 	ssize_t bytes_read;
 
 	int fd = open(file_name, O_RDONLY);
@@ -59,7 +59,7 @@ ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 		}
 		if (bytes_read < 0)
 		{
-			char *error_msg = "write: Failed to write to read file\n";
+			char *error_msg = "write: Failed to read file\n";
 
 			write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		}
