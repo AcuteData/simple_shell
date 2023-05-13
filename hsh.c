@@ -89,7 +89,7 @@ void loop(int argc, char **argv)
 			continue;
 		}
 
-		history(input, c);
+		history(input, NULL, NULL);
 
 		comd = parse_comd(input);
 		st = handle_comd(comd, input, c, argc, argv);
