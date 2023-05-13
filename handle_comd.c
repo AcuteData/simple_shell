@@ -44,27 +44,33 @@ void handle_cd(char **comd)
 }
 
 /**
- * handle_comd - Executes a command entered by the user.
+ * h_comd - Executes a command entered by the user.
  *
  * @comd: An array of strings containing the command and its arguments.
+ * @input: Pointer to the input str entered by the user.
+ * @c: Comd counter.
+ * @argc: Number of arguments passed.
+ * @argv: Array of strs with the args passed.
  *
  * Description: handles exec of comd passed in the `comd` parameter.
  * If comd is `cd`, `pwd`, or `exit`, it's exec by approp function.
  * Otherwise, a child process created to exec comd using `execvp()`.
  *
- * Return: Nothing.
+ * Return: Status code of the comd execution.
  */
-void handle_comd(char **comd)
+int h_comd(char **comd, char *input, unsigned int c, int argc, char **argv)
 {
 	if (comd[0] == NULL)
-		return;
+		return (EXIT_SUCCESS);
 	else if (my_strcmp(comd[0], "cd") == 0)
 	{
 		handle_cd(comd);
+		return (EXIT_SUCCESS);
 	}
 	else if (my_strcmp(comd[0], "pwd") == 0)
 	{
 		handle_pwd();
+		return (EXIT_SUCCESS);
 	}
 	else if (my_strcmp(comd[0], "exit") == 0)
 	{
@@ -82,10 +88,13 @@ void handle_comd(char **comd)
 		else if (pid == 0)
 		{
 			execvp(comd[0], comd);
-			perror("execvp failed");
+			perror(input);
+			free_mem(argc, argv);
 			_exit(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 		}
 		else
 			wait(NULL);
 	}
+	return (EXIT_SUCCESS);
 }
