@@ -91,7 +91,7 @@ void loop(int argc, char **argv)
 
 		history(input, NULL, NULL);
 
-		comd = parse_comd(input);
+		comd = parse_comd(input, comd);
 		st = handle_comd(comd, input, c, argc, argv);
 		free_all(comd, input);
 
