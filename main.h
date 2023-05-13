@@ -46,7 +46,7 @@ char *my_getline(const int fd);
 /* Handle Comd */
 void handle_pwd(void);
 void handle_cd(char **comd);
-void handle_comd(char **comd);
+int h_comd(char **comd, char *input, unsigned int c, int argc, char **argv);
 
 /* Print Environment Variable */
 void print_environ(char **env);
