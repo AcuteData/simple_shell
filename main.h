@@ -37,7 +37,7 @@ int my_strcmp(const char *s1, const char *s2);
 int handle_builtin(char **args, char **environ);
 
 /* Parse comd */
-int parse_comd(char *comd, char **args);
+char **parse_comd(char *comd);
 
 /* My Getline */
 void *_realloc(void *ptr, size_t old_size, size_t new_size);

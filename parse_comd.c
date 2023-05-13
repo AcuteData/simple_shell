@@ -3,12 +3,12 @@
 /**
  * parse_comd - Parses a command string and stores args in an array.
  * @comd: Pointer to the command string to be parsed.
- * @args: Pointer to an array to store the parsed arguments.
  *
- * Return: Number of arguments parsed.
+ * Return: Array of arguments parsed.
  */
-int parse_comd(char *comd, char **args)
+char **parse_comd(char *comd)
 {
+	static char *args[BUFSIZE];
 	int argc = 0;
 
 	while (*comd != '\0')
@@ -23,5 +23,5 @@ int parse_comd(char *comd, char **args)
 			comd++;
 	}
 	args[argc] = NULL;
-	return (argc);
+	return (args);
 }
