@@ -55,11 +55,12 @@ void _prompt(void)
  */
 void loop(int argc, char **argv)
 {
-	char *input, **comd;
+	char *input, **comd, *buffer;
 	int c = 0, st = 0;
+	ssize_t bytes_read;
 
 	if (argv[1] != NULL)
-		char *buffer = argv[2];
+		buffer = argv[2];
 
 	read_file(argv[1], &buffer, my_strlen(argv[2]));
 
@@ -72,7 +73,7 @@ void loop(int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			_prompt();
 
-		input = my_getline();
+		input = my_getline(STDIN_FILENO);
 
 		if (input == NULL)
 		{
@@ -88,7 +89,7 @@ void loop(int argc, char **argv)
 			continue;
 		}
 
-		history(input);
+		history(input, c);
 
 		comd = parse_comd(input);
 		st = handle_comd(comd, input, c, argc, argv);
@@ -99,14 +100,14 @@ void loop(int argc, char **argv)
 
 		if (argv[1] != NULL && argv[2] != NULL)
 		{
-			char *buffer = malloc(sizeof(char) * (my_strlen(argv[2]) + 1));
+			buffer = malloc(sizeof(char) * (my_strlen(argv[2]) + 1));
 
 			if (buffer == NULL)
 			{
 				perror("malloc");
 				exit(EXIT_FAILURE);
 			}
-			ssize_t bytes_read = read_file(argv[1], &buffer, my_strlen(argv[2]) + 1);
+			bytes_read = read_file(argv[1], &buffer, my_strlen(argv[2]) + 1);
 
 			if (bytes_read >= 0)
 			{

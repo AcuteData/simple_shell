@@ -27,6 +27,10 @@ size_t my_strlen(const char *str)
  */
 ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 {
+	struct stat st;
+	ssize_t t_b_read = 0;
+	ssize_t bytes_read;
+
 	int fd = open(file_name, O_RDONLY);
 
 	if (fd < 0)
@@ -36,7 +40,6 @@ ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		return (-1);
 	}
-	struct stat st;
 
 	if (fstat(fd, &st) < 0 || !S_ISREG(st.st_mode))
 	{
@@ -46,8 +49,6 @@ ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 		close(fd);
 		return (-1);
 	}
-	ssize_t t_b_read = 0;
-	ssize_t bytes_read;
 
 	while ((bytes_read = read(fd, *buffer + t_b_read, buf - t_b_read)) > 0)
 	{
