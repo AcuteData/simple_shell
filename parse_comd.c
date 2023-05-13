@@ -8,8 +8,13 @@
  */
 char **parse_comd(char *comd)
 {
-	char *args[BUFSIZ];
+	char **args = malloc(BUFSIZ * sizeof(char *));
 	int argc = 0;
+
+	if (args == NULL)
+	{
+		return (NULL);
+	}
 
 	while (*comd != '\0')
 	{
