@@ -16,7 +16,7 @@
 #define BUFFER_SIZE 1024
 
 /* HSH */
-int main(__attribute__((unused)) int argc, char **argv);
+int main(__attribute__((unused)) int argc, char **argv, char **env);
 int handle_input(int argc, char **argv);
 void loop(int argc, char **argv);
 void handle_empty_input_error(char *prog_name, int c);

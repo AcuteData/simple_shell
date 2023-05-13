@@ -93,7 +93,7 @@ void loop(int argc, char **argv)
 
 		comd = parse_comd(input);
 		st = handle_comd(comd, input, argc, argv);
-		free_all(comd, input);
+		free_all(comd, input, 0);
 
 		if (st == -1)
 			break;
@@ -137,7 +137,7 @@ int handle_input(int argc, char **argv)
  *
  * Return: 0 on success.
  */
-int main(__attribute__((unused)) int argc, char **argv)
+int main(__attribute__((unused)) int argc, char **argv, char **env)
 {
 	int status = handle_input(argc, argv);
 
@@ -145,6 +145,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 	{
 		handle_empty_input_error(argv[0], 0);
 	}
-	print_environ();
+	print_environ(env);
 	return (0);
 }
