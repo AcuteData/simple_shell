@@ -58,7 +58,7 @@ void handle_cd(char **comd)
  *
  * Return: Status code of the comd execution.
  */
-int h_comd(char **comd, char *input, unsigned int c, int argc, char **argv)
+int handle_comd(char **comd, char *input, int argc, char **argv)
 {
 	if (comd[0] == NULL)
 		return (EXIT_SUCCESS);
