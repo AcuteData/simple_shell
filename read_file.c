@@ -25,7 +25,7 @@ size_t my_strlen(const char *str)
  *
  * Return: Number of bytes read.
  */
-ssize_t read_file(const char *file_name, char **buffer, size_t buf)
+ssize_t read_file(const char *file_name, char *buffer, size_t buf)
 {
 	struct stat st;
 	size_t t_b_read = 0;
@@ -35,40 +35,33 @@ ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 
 	if (fd < 0)
 	{
-		perror("open");
+		char *error_msg = "open: No such file or directory\n";
+
+		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		return (-1);
 	}
 
 	if (fstat(fd, &st) < 0 || !S_ISREG(st.st_mode))
 	{
-		perror("fstat");
+		char *error_msg = "This is not a regular file\n";
+
+		write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		close(fd);
 		return (-1);
 	}
 
-	*buffer = malloc(buf * sizeof(char));
-
-	if (*buffer == NULL)
-	{
-		perror("malloc");
-		close(fd);
-		return (-1);
-	}
-
-	while ((bytes_red = read(fd, *buffer + t_b_read, buf - t_b_read)) > 0)
+	while ((bytes_read = read(fd, buffer + t_b_read, buf - t_b_read)) > 0)
 	{
 		t_b_read += bytes_read;
-
 		if (t_b_read >= buf)
 		{
 			break;
 		}
 		if (bytes_read < 0)
 		{
-			perror("read");
-			free(*buffer);
-			close(fd);
-			return (-1);
+			char *error_msg = "read: Failed to read file\n";
+
+			write(STDERR_FILENO, error_msg, my_strlen(error_msg));
 		}
 	}
 	close(fd);
