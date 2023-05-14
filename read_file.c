@@ -25,7 +25,7 @@ size_t my_strlen(const char *str)
  *
  * Return: Number of bytes read.
  */
-ssize_t read_file(const char *file_name, char *buffer, size_t buf)
+ssize_t read_file(const char *file_name, char **buffer, size_t buf)
 {
 	struct stat st;
 	size_t t_b_read = 0;
